@@ -1,7 +1,7 @@
-var bow , arrow,  background;
-var bowImage, arrowImage, green_balloonImage, red_balloonImage, pink_balloonImage ,blue_balloonImage, backgroundImage;
-
-var score=0;
+var bow , arrow,  background, backgroundImage;
+var bowImage, arrowImage
+var green_balloonImage, red_balloonImage, pink_balloonImage ,blue_balloonImage;
+var score = 0;
 
 function preload(){
   backgroundImage = loadImage("background0.png");
@@ -10,11 +10,10 @@ function preload(){
   green_balloonImage = loadImage("green_balloon0.png");
   pink_balloonImage = loadImage("pink_balloon0.png");
   blue_balloonImage = loadImage("blue_balloon0.png");
-
-  // red_balloonImage = loadImage("red_balloon0.png");
+  red_balloonImage = loadImage("red_balloon0.png");
   // red_balloonImage = loadImage("redballoon0.png");
   // red_balloonImage = loadImage("red_balloon0");
-  //red_balloonImage = loadImage("red_balloon0.png");
+  // red_balloonImage = loadImage("red_balloon0.png");
 
 }
 
@@ -38,6 +37,7 @@ function setup() {
 
 function draw() {
  background(0);
+
   // movendo chão
     scene.velocityX = -3 
 
@@ -49,30 +49,32 @@ function draw() {
   bow.y = World.mouseY
   
    // soltar flecha quando barra de espaço é pressionada
-  if (keyDown("space")) {
+  if (keyDown("space") ) {
     createArrow();
     
   }
   
   //criando inimigos continuamente
  
-   // var select_balloon = Math.round(random(1,4));
+ var select_balloon = Math.round(random(1,4));
   // var select_balloon = random(1,4);
   // var select_balloon = Math.round(random());
   // var select_balloon = Math.round(random(1,4,2));
   
   if (World.frameCount % 100 == 0) {
-    if (select_balloon == 1) {
-      redBalloon();
-    } else if (select_balloon == 2) {
-      greenBalloon();
-    } else if (select_balloon == 3) {
-      blueBalloon();
-    } else {
-      pinkBalloon();
-    }
+    var sorteio = Math.round(random (1,6))
+    switch (sorteio) {
+    case 1: pinkBalloon
+    break;
+    case 2: blueBalloon
+    break;
+    case 3: redBalloon
+    break;
+    case 4: greenBalloon
+    break;
   }
-  
+}
+
   drawSprites();
   text("Pontuação: "+ score, 300,50)
 }
@@ -105,13 +107,13 @@ function draw() {
 //   red.scale = 0.1;
 // }
 
-// function redBalloon() {
-//   var red = createSprite(0,Math.round(random(20, 370)), 10, 10);
-//   red.addImage(red_balloonImage);
-//   red.velocityX = 3;
-//   red.lifetime = 150;
-//   red.scale = 0.1;
-// }
+ function redBalloon() {
+   var red = createSprite(0,Math.round(random(20, 370)), 10, 10);
+   red.addImage(red_balloonImage);
+   red.velocityX = 3;
+   red.lifetime = 150;
+   red.scale = 0.1;
+ }
 
 // function redBalloon() {
 //   var red = createSprite(0, 10, Math.round(random(20, 370)) , 10);
